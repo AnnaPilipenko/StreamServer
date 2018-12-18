@@ -1,0 +1,66 @@
+<% if(data.status && data.status != 0) { %>
+	<div class="alert danger"><%= data.error %></div>
+<% } else if(data.status == 0) { %>
+	<div class="alert"><%= data.success %></div>
+<% } %>
+
+<div id="panel" class="panel">
+	<% if(data.updateVideo) { %>
+		<div class="title">Изменить информацию</div>
+	<%	} 
+		else { %>
+		<div class="title">Добавить источник аудио</div>
+	<% }%>
+	<div class="body">
+			<form method="POST" action="/settings/webcam">
+			<div class="form-input">
+				<div class="title">Название:</div>
+				<select name="fullname">
+					<% for(let i = 0; i < data.webcams.length; i++) { 
+					let val = data.webcams[i].name + '    (' + data.webcams[i].path + ')'%>
+					<option  value="<%= val%>"><%= val%></option>
+					<%}%>
+				</select>
+			</div>
+			<div class="form-input right">
+				<input type="submit" value="Добавить" class="btn">
+			</div>
+		</form>
+	</div>
+</div>
+
+<% if(data.result && data.result.length > 0) { %>
+
+<div class="table">
+	<table>
+		<tr>
+			<td>№</td>
+			<td>Название</td>
+			<td>Url</td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<% for(let i = 0; i < data.result.length; i++) {%>
+			<tr>
+				<td><%= (data.result[i].id) %></td>
+				<td><%= (data.result[i].name) %></td>
+				<td><%= (data.result[i].source) %></td>
+				<% if(data.result[i].type == 'ipcam') { %>
+					<td>
+						<a href="/settings/ipcam/<%=data.result[i].id%>">Изменить</a>
+					</td>
+				<% } else { %>
+					<td>
+						<a href="/settings/webcam"> </a>
+					</td>
+				<% }%>
+				<td>
+					
+					<a href="/settings/webcam/remove/<%=data.result[i].id%>">Удалить </a>
+				</td>
+			</tr>
+		<% }%>
+	</table>
+</div>
+<% }%>
+

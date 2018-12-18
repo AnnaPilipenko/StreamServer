@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Главная",
+		"url": "",
+		"icon": "television"
+	},
+	{
+		"name": "Настройки",
+		"url": "settings",
+		"icon": "cogs",
+		"items": [
+			{
+				"name": "Общее",
+				"url": "general"
+			},
+			{
+				"name": "IP-камеры",
+				"url": "ipcam"
+			},
+			{
+				"name": "Веб-камеры",
+				"url": "webcam"
+			}
+		]
+	}
+]

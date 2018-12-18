@@ -1,0 +1,218 @@
+/*		Buttons		*/
+$color-btn-danger: #ff7600;
+
+.btn {
+	background-color: $color-first;
+	border: 1px solid darken($color-first, 5%);
+	padding: $padding-inner;
+	color: #fff;
+	border-radius: $border-radius;
+	outline: none;
+	cursor: pointer;
+
+	&.danger {
+		background-color: $color-btn-danger;
+		border-color: darken($color-btn-danger, 3%);
+
+		&:hover {
+			background-color: darken($color-btn-danger, 5%);
+		}
+	}
+
+	&:hover {
+		background-color: darken($color-first, 5%);
+	}
+}
+
+
+/*		Panel		*/
+.panel {
+    border-radius: $border-radius;
+    border: 1px solid darken($color-first, 5%);
+
+    & > .title {
+	    padding: $padding-inner;
+	    color: white;
+	    background-color: $color-first;
+	    border-color: $color-first;
+	    font-weight: 600;
+	}
+
+	& > .body {
+	    padding: $padding-primary;
+	}
+}
+
+
+/*		Inputs		*/
+input[type="text"],
+input[type="password"] {
+	padding: $padding-inner;
+	border: 1px solid $color-input;
+	border-radius: $border-radius;
+	outline: none;
+	width: calc(100% - #{$padding-primary * 2} - 2px);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+	border-color: $color-input-focus;
+}
+
+
+/*		Form-input		*/
+.form-input {
+	display: flex;
+	flex-direction: column;
+
+	.title {
+		font-size: 0.9rem;
+		margin-bottom: 3px;
+	}
+
+	&.right {
+		align-items: flex-end; 
+	}
+
+	&:nth-child(n+2) {
+		margin-top: $padding-primary;
+	}
+}
+
+
+/*		Alert		*/
+.alert {
+	padding: $padding-inner;
+
+	border: 1px solid darken($color-first, 5%);
+	border-radius: $border-radius;
+	background-color: $color-first;
+	color: #fff;
+
+	&:before {
+		font-family: "FontAwesome";
+		content: "\f00c";
+		margin-right: 5px;
+	}
+
+	&.danger {
+		border-color: darken($color-danger, 5%);
+		background-color: $color-danger;
+
+		&:before {
+			font-family: "FontAwesome";
+			content: "\f071";
+			margin-right: 5px;
+		}
+	}
+}
+
+/*		Table		*/
+.table {
+    border-radius: 2px;
+	border: 1px solid darken($color-first, 5%);
+
+	table {
+		width: 100%;
+	    border-collapse: collapse;
+
+
+	    tr {
+	    	background-color: $color-table;
+		    
+		    td {
+		    	padding: $padding-inner;
+		    }
+
+			&:first-child {
+				background-color: $color-first;
+				color: #fff;
+				font-size: 0.9rem;
+		    	font-weight: 600;
+			}
+
+			&:last-child {
+				border-buttom: 1px solid $color-first;
+			}
+
+			&:nth-child(2n+2) {
+				background-color: #fff;
+			}
+
+			& > td input:nth-child(n+2) {
+				    margin-left: 15px;
+			}
+	    }
+	}
+}
+
+/*      List group      */
+.list-group {
+    width: 100%;
+	border: 1px solid $color-first;
+	border-radius: $border-radius $border-radius 0 0;
+
+    .title {
+        padding: $padding-inner;
+        background-color: $color-first;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .body {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+        	$active-bk: #d8d8d8;
+
+            a {
+            	font-size: 12px;
+            	display: block;
+                text-decoration: none;
+                color: #000;
+                padding: $padding-inner;
+                border-bottom: none;
+                &:hover {
+                	background-color: $active-bk;
+                }
+                &>.name{
+                	font-size: 15px;
+                	font-weight: 600;
+                }
+            }
+
+            &.active {
+            	background-color: $active-bk;
+            }
+        }
+    }
+}
+
+/*		Select		*/
+select {
+    width: 100%;
+	padding: $padding-inner;
+	padding-right: $padding-primary*2 + 10px;
+	border: 1px solid $color-input;
+	border-radius: $border-radius;
+	font-family: 'Open Sans',sans-serif; 
+	 -webkit-appearance: none;  
+        -moz-appearance: none; 
+    appearance: none;
+	background: #fff url("/images/arrow.png") no-repeat;
+	background-position-x: calc(100% - #{$padding-primary});
+	background-position-y: center;
+	cursor: pointer;
+	background-size: 10px;
+
+	&:focus {
+		border-color: $color-input-focus;
+		outline: none;
+	}
+
+	&::-ms-expand {
+	    display: none;
+	}
+}

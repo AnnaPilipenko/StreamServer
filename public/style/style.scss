@@ -1,0 +1,242 @@
+@import "_global.scss";
+@import "_fonts.scss";
+@import "_form.scss";
+
+body {
+    margin: 0;
+    background: #f1f2f7;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 13px;
+    display: flex;
+}
+
+.display-none {
+    display: none!important;
+}
+
+/*      MENU        */
+a { 
+    text-decoration: none; 
+    color: $color-link; 
+
+    &:hover { 
+        color: darken($color-link, 5%); 
+        border-bottom: 1px dashed; 
+    } 
+}
+
+aside.left {
+    width: 240px;
+    background: $color-second;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $color-first;
+        font-size: 1.5rem;
+        height: $top-header-height;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            border: none;
+        }
+    }
+
+    .menu {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        float: left;
+        height: 100vh;
+
+        li {
+            &.active,
+            a:hover {
+                color: $color-first;
+                background-color: $color-third;
+                border: none;
+            }
+
+            &.active.expand {
+                .sub {
+                    display: block;
+                }
+
+                a::after {
+                    transform: rotateZ(90deg);
+                }
+            }
+
+            &.expand > a::after {
+                content: "";
+                background-image: url(../images/nav-expand.png);
+                height: 17px;
+                width: 17px;
+                float: right;
+            }
+
+            a {
+                padding: 20px;
+                display: block;
+                text-align: left;
+                text-decoration: none;
+                color: #aeb2b7;
+
+                span {
+                    margin-left: 10px;
+                }
+            }
+
+            .sub {
+                display: none;
+                margin: 0;
+                padding: 0;
+
+                a {
+                    padding: 15px 20px;
+                    text-align: left;
+
+                    &:hover,
+                    &.active {
+                        background-color: #202025;
+                    }
+                }
+            }
+        }
+
+        & > li {
+            border-bottom: 1px solid rgba(64, 64, 64, 0.5);
+        }
+    }
+}
+
+
+/*      CONTENT     */
+
+body .wrapper {
+    flex-grow: 1;
+
+    & > div:first-child {
+        height: $top-header-height;
+        background-color: #ffffff;
+        box-shadow: 3px 0px 10px #d2d2d2;
+        padding-left: $padding-primary;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+
+        & > div {
+            display: flex;
+            align-items: center;
+        }
+
+        .status {
+            border-radius: 50%;
+            margin-right: 5px;
+            font-size: 8px;
+
+
+            &.onair {
+                animation: onair 1s infinite;
+            }
+
+            &.stop {
+                color: #f76409;
+            }
+        }
+
+        .info {
+        }
+
+        .timer {
+            margin-left: 5px;
+            color: lighten(black, 50%);
+
+            span {
+                animation: timer_pulse 1s infinite;
+            }
+        }
+    }
+
+    .content {
+        padding: $padding-primary;
+
+        & > *:nth-child(n+2) {
+            margin-top: $padding-primary;
+        }
+    }
+
+    #stream-control {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .timer {
+            margin: $padding-primary;
+            display: block;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+/*      CONTAINER       */
+.container-flex {
+    display: flex;
+    justify-content: space-around;
+    &>div:nth-child(n+2) {
+        margin-left: $padding-primary;
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+@keyframes onair {
+    0% {
+        color: lighten($color-first, 15%);
+    }
+
+    50% {
+        color: $color-first;
+    }
+
+    100% {
+        color: lighten($color-first, 15%);
+    }
+}
+
+@keyframes timer_pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/*      STREAM CANVAS    */
+
+#canvas_stream { 
+    height: 50vh; 
+    display: block; 
+    margin: auto; 
+    background: $color-input;
+}

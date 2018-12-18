@@ -1,0 +1,39 @@
+<% if(data.status && data.status != 0) { %>
+	<div class="alert danger"><%= data.error %></div>
+<% } %>
+
+<canvas data-ui="canvas" id="canvas_stream"></canvas>
+
+<div id="stream-control">
+	<div class="timer display-none" data-ui-group="timer" data-ui="main"></div>
+	<div>
+		<button class="btn" data-ui-group="btn_streaming" data-ui="start">Начать трансляцию</button>
+		<button class="btn danger display-none" data-ui-group="btn_streaming" data-ui="stop">Остановить</button>
+	</div>
+</div>
+
+<div class="container-flex">
+	<div class="list-group">
+		<div class="title">Источник видео</div>
+		<ul class="body" data-ui="video-devices">
+			<% if(data.videoDevices) { %>
+				<% for(let i = 0; i < data.videoDevices.length; i++) { %>
+					<li onclick="streaming.selectVideoDevice(this)" data-id="<%=data.videoDevices[i].id%>" class="<%=(data.videoDevices[i].active == 1) ? 'active' : ''%>">
+						<a href="#"> 
+							<div class="name"><%=data.videoDevices[i].name%></div>
+							<div class="info"><%=data.videoDevices[i].source%></div>	
+						</a>
+					</li>
+				<% }%>
+			<% } %>
+		</ul>
+	</div>
+	
+</div>
+
+<script src="/js/jsmpg.js"></script>
+
+<script src="/js/ctrl_stream.js"></script>
+<% if(data.streamingStartTime) { %>
+<script type="text/javascript">streaming.start(<%= parseInt((new Date())-data.streamingStartTime)/1000 %>)</script>
+<% } %>
